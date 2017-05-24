@@ -1,2 +1,2 @@
-# androidtest
-안드로이드 공부 정리
+# 소개
+Android 스터디 정리
