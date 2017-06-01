@@ -1,6 +1,8 @@
+# 링크
 ### [공식 가이드](https://developer.android.com/topic/instant-apps/index.html)
 ### [공식 코드랩](https://codelabs.developers.google.com/codelabs/android-instant-apps/index.html)
 
+# 정의
 ### 인스턴트앱이란?
 - 7MB 짜리 앱이 있다.
 - 이 앱은 상품 목록 보기 기능(A)과 상품 정보 기능(B)을 가지고 있다.
