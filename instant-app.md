@@ -1,6 +1,6 @@
 # 링크
-### [공식 가이드](https://developer.android.com/topic/instant-apps/index.html)
-### [공식 코드랩](https://codelabs.developers.google.com/codelabs/android-instant-apps/index.html)
+- [공식 가이드](https://developer.android.com/topic/instant-apps/index.html)
+- [공식 코드랩](https://codelabs.developers.google.com/codelabs/android-instant-apps/index.html)
 
 # 정의
 ### 인스턴트앱이란?
