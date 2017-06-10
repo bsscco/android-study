@@ -351,7 +351,7 @@ UI Building(MVVM)
 			- CountingTaskExecuteRule : instrumentation test를 위해서 아키텍처 컴포넌트의 백그라운드 작업을 기다리게 하기 위해 사용되거나 리소스를 대기하는 espresso를 연결하기 위해 사용될 수 있습니다.
 
 최종 아키텍쳐
-- ![final-architecture.png](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
+![final-architecture.png](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 - Activity/Fragment : ViewModel = 1 : 1
 - ViewModel has many LiveDatas
 - ViewModel references singleton Repository
@@ -368,7 +368,7 @@ UI Building(MVVM)
 
 
 ### 추가적인 내용
-- 우리는 네트워크 상태를 Resource 클래스로 빼낼 겁니다.
+- 우리는 데이터와 네트워크 상태를 캡슐화하기 위해 Resource 클래스를 사용할 겁니다.
 ```java
 //a generic class that describes a data with a status
 public class Resource<T> {
