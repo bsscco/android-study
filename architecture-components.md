@@ -26,7 +26,7 @@
 	- [샘플](https://github.com/googlesamples/android-architecture-components)
 	
 ### 두 번째 컴포넌트군 : Room
-- 뭔가요?
+- 정의
 	- SQLite ORM 라이브러리
 	- 컴파일 타임에 쿼리를 체크해줍니다.
 - 클래스 목록
