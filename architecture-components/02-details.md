@@ -125,7 +125,7 @@ UI Building(MVVM)
 	}
 	```
 	
-- (9) **ViewModel**에서 직접 fetching 하면 안 되는 이유
+- (9) **ViewModel**에서 직접 fetching 하면 안 되요. **Model**에서 해야 되요.
 	- **ViewModel**은 Webservice에 직접 접근해서 데이터를 fetching할 수 있고, 데이터를 User 객체에 할당할 수 있습니다. 이것은 **ViewModel**에게 너무 많은 책임감을 쥐어줍니다. 이것은 곧 관심사의 분리라는 원칙에 어긋나게 됩니다. 추가적으로 **ViewModel**의 범위는 프래그먼트나 액티비티의 라이프사이클에 얽메이게 되는데요, 그렇기 때문에 라이프사이클이 종료될 때 데이터도 함께 잃어버리게 됩니다. 이것은 유저 경험에 좋지 않습니다. 대신에 **ViewModel**은 **Repository**에게 이 작업을 위임합니다.
 	- **Repository**
 		- 데이터 연산의 책임을 집니다.
