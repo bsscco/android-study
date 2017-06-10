@@ -84,7 +84,7 @@
 			- 앱 컴포넌트의 현재 상태는 Lifecycle 객체에 의해 추적됩니다.
 		- ![lifecycle-states.png](https://developer.android.com/images/topic/libraries/architecture/lifecycle-states.png)
 
-- 라이프사이클 관찰하기
+- 코드
 	- 아래 클래스는 어노테이션을 통해 라이프사이클 상태를 관찰할 수 있습니다.
 		```java
 		public class MyObserver implements LifecycleObserver {
@@ -107,7 +107,7 @@
 	- 아키텍쳐 컴포넌트들이 안정화될 때가지 Fragment와 AppCompatActivity 대신에 LifecycleFragment와 LifecycleActivity를 사용해주세요. 
 	- 나중에 LifecycleFragment와 LifecycleActivity는 deprecated가 될 예정입니다.
 
-- 라이프사이클 문제 해결하기
+- 코드
 	- 위의 예로부터 우리는 LifecycleObserver로써 MyLocationListener를 만들 수 있습니다. 그리고 LifecycleOwner의 onCreate()에서 그것을 초기화할 수 있습니다. 이것은 LifecycleObserver가 스스로 필요할 때 클린업 되도록 할 수 있게 만듭니다. 
 	- 아래 코드를 봅시다.
 		```java
