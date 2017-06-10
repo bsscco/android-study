@@ -92,10 +92,14 @@ class MyActivity extends AppCompatActivity {
 	```	
 
 ### LifecycleOwner
-- LifecycleOwner는 라이프사이클을 가지는 싱글 메소드 인터페이스입니다. getLifecycle()이라는 메소드만 가집니다.
+- LifecycleOwner는 라이프사이클을 가지는 싱글 메소드 인터페이스입니다. 
+- getLifecycle()이라는 메소드만 가집니다.
+
 - 알아두기
-	- 아키텍쳐 컴포넌트들이 안정화될 때가지 Fragment와 AppCompatActivity 대신에 LifecycleFragment와 LifecycleActivity를 사용해주세요. 나중에 LifecycleFragment와 LifecycleActivity는 deprecated가 될 예정입니다.
-- 
+	- 아키텍쳐 컴포넌트들이 안정화될 때가지 Fragment와 AppCompatActivity 대신에 LifecycleFragment와 LifecycleActivity를 사용해주세요. 
+	- 나중에 LifecycleFragment와 LifecycleActivity는 deprecated가 될 예정입니다.
+
+- 위의 예에서 우리는 LifecycleObserver로써 MyLocationListener를 만들었습니다. 그리고 LifecycleOwner의 onCreate()에서 그것을 초기화했습니다. 이것은 LifecycleObserver가 스스로 필요할 때 클린업 되도록 할 수 있게 만듭니다.
 
 ### Best practices
 
