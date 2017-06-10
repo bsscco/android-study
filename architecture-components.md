@@ -70,7 +70,7 @@ UI Building(MVVM)
 		- User Object
 			- 유저 데이터
 
-- (3) ViewModel 준비
+- (3) **ViewModel** 준비
 	- 우리는 UserProfileViewModel를 생성할 겁니다.
 	- **ViewModel**
 		- UI를 기술하는 데이터를 제공합니다.
@@ -265,16 +265,16 @@ UI Building(MVVM)
 
 	```
 	
-- (14) 데이터를 영속적으로 보존하기
-	- 만약 유저가 오랜 시간 앱을 떠났다가 돌아오거나, OS가 앱을 강제로 종료시켰다가 재실행 시키는 상황에선 무슨 일이 벌어질까요? 데이터를 re-fetching 해야 합니다. 이것은 caching을 통해 간단히 해결할 수 있습니다. 그러나 이 해결법은 또 다른 문제를 야기합니다. 다른 시간대에 유저 데이터를 요청했을 때 데이터들이 서로 다르다면 유저 경험에 매우 좋지 않습니다. 같은 요청의 데이터들이 일관성을 가질 수 없는 문제는 영속적인 모델을 사용함으로써 해결할 수 있습니다. 이것의 구현체가 Room 라이브러리입니다.
+- (14) 데이터를 영속적으로 보존하려면?
+	- 만약 유저가 오랜 시간 앱을 떠났다가 돌아오거나, OS가 앱을 강제로 종료시켰다가 재실행 시키는 상황에선 무슨 일이 벌어질까요? 데이터를 re-fetching 해야 합니다. 이것은 caching을 통해 간단히 해결할 수 있습니다. 그러나 이 해결법은 또 다른 문제를 야기합니다. 다른 시간대에 유저 데이터를 요청했을 때 데이터들이 서로 다르다면 유저 경험에 매우 좋지 않습니다. 같은 요청의 데이터들이 일관성을 가질 수 없는 문제는 영속적인 모델을 사용함으로써 해결할 수 있습니다. 이것의 구현체가 **Room** 라이브러리입니다.
 	- **Room**
 		- ORM 라이브러리입니다. 보일러 플레이트 코드를 최소화합니다.
 		- 컴파일타임에 쿼리가 잘못됐는지 체크합니다.
 		- 이것은 그밖에 DB 데이터가 바뀌었을 때를 관찰해서 LiveData에게 알립니다.
 		- 추가적으로 백그라운드 스레드에서만 동작시켜야 합니다.
 
-- (15) 데이터 영속 보존을 위해 Room 준비하기
-	- Room을 사용하기 위해서는 로컬 스키마를 정의해야 합니다. 먼저 User 클래스에 @Entity를 마크합니다.
+- (15) 데이터 영속 보존을 위해 **Room** 준비하기
+	- **Room**을 사용하기 위해서는 로컬 스키마를 정의해야 합니다. 먼저 User 클래스에 @Entity를 마크합니다.
 	```java
 	@Entity
 	class User {
@@ -292,7 +292,7 @@ UI Building(MVVM)
 	}
 	```
 
-- (16) DAO 준비
+- (16) 데이터 저장 API를 위한 DAO 준비
 	- 이제 우리는 유저 데이터를 DB에 삽입하기 위한 방법이 필요합니다. DAO를 만들 겁니다.
 	```java
 	@Dao
@@ -304,7 +304,7 @@ UI Building(MVVM)
 	}
 	```
 
-- (17) Room과 DAO 연결하기
+- (17) **Room**과 DAO 연결하기
 	- 그리고 DB로부터 DAO를 참조합니다.
 	```java
 	@Database(entities = {User.class}, version = 1)
@@ -314,8 +314,8 @@ UI Building(MVVM)
 	```
 	- MyDatabase는 추상화 클래스입니다. Room은 자동으로 구현체를 제공합니다. 자세한 내용은 닥스를 참고하세요.
 
-- (18) Repository와 Room 연결하기
-	- 이제 우리는 Room의 data source와 협동하기 위해 UserRepository를 수정할 겁니다.
+- (18) **Repository**와 **Room** 연결해서 데이터 연속성 완성하기
+	- 이제 우리는 **Room**의 data source와 협동하기 위해 UserRepository를 수정할 겁니다.
 	```java
 	@Singleton
 	public class UserRepository {
@@ -399,7 +399,8 @@ UI Building(MVVM)
 - ViewModel has many LiveDatas
 - ViewModel references singleton Repository
 
-### 원칙을 가이드 합니다.
+
+### 해결책 원칙에 대한 가이드
 - enty point들(앱 컴포넌트)은 데이터를 가지고 있어서는 안 됩니다. 각 컴포넌트의 라이프사이클 문제 때문입니다. 
 - 각 모듈 간 책임지는 경계를 칼 같이 나누세요. 어떤 모듈에 관련없는 기능들이 모여 있으면 테스트가 어렵고 유지보수가 곤란해지기 때문입니다.
 - 각 모듈을 가능한한 작게 만드세요. 어떤 모듈에 관련없는 기능들이 모여 있으면 테스트가 어렵고 유지보수가 곤란해지기 때문입니다.
@@ -456,7 +457,7 @@ allprojects {
 
 ### 아키텍쳐 컴포넌트 추가하기
 - 앱 build.gradle에 추가합니다.
-- Lifecycles, LiveData, ViewModel
+- Lifecycle, LiveData, ViewModel
 	- compile "android.arch.lifecycle:runtime:1.0.0-alpha1"
 	- compile "android.arch.lifecycle:extensions:1.0.0-alpha1"
 	- annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha1"
@@ -474,7 +475,7 @@ allprojects {
 <br />
 
 # 라이프사이클 핸들링하기
-### 소개
+### android.arch.lifecycle 패키지
 - android.arch.lifecycle 패키지는 우리가 lifecycle-aware 컴포넌트를 만들 수 있도록 해주는 클래스와 인터페이스를 제공합니다. lifecycler-arware 컴포넌트는 현재 액티비티나 프래그먼트의 라이프사이클에 맞추어 자동으로 적절히 동작합니다.
 - 아래 코드를 봅시다.
 ```java
@@ -541,7 +542,7 @@ class MyActivity extends AppCompatActivity {
 ```
 - android.arch.lifecycle 패키지는 이러한 문제들을 해결하는 데 돕습니다.
 
-### 라이프사이클
+### Lifecycle
 - Lifecycle은 다른 객체들이 액티비티나 프래그먼트의 라이프사이클 상태를 관찰할 수 있도록 돕는 클래스입니다. Lifecycle은 라이프사이클 상태를 관찰하기 위해 두 가지 enumaration을 사용합니다. 
 	- Event
 	 	- 라이프사이클 이벤트들은 프레임워크와 Lifecycle 클래스로부터 디스패치 됩니다. 이러한 이벤트들은 액티비티나 프래그먼트의 이벤트 콜백과 매치됩니다.
