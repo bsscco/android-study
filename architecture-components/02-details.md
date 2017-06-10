@@ -64,7 +64,7 @@ UI Building(MVVM)
 				    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 					super.onActivityCreated(savedInstanceState);
 					String userId = getArguments().getString(UID_KEY);
-					viewModel = ViewModelProviders.of(this).get(UserProfileViewModel.class);
+					viewModel = ViewModelProviders.of(this).get(UserProfileViewModel.class); // 이 부분에서 UserProfileViewModel에 포함된 LiveData들이 UserProfileFragment의 라이프사이클을 알 수 있도록 연결해줍니다.
 					viewModel.init(userId);
 				    }
 
