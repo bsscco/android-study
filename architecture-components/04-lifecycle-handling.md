@@ -99,7 +99,54 @@ class MyActivity extends AppCompatActivity {
 	- 아키텍쳐 컴포넌트들이 안정화될 때가지 Fragment와 AppCompatActivity 대신에 LifecycleFragment와 LifecycleActivity를 사용해주세요. 
 	- 나중에 LifecycleFragment와 LifecycleActivity는 deprecated가 될 예정입니다.
 
-- 위의 예에서 우리는 LifecycleObserver로써 MyLocationListener를 만들었습니다. 그리고 LifecycleOwner의 onCreate()에서 그것을 초기화했습니다. 이것은 LifecycleObserver가 스스로 필요할 때 클린업 되도록 할 수 있게 만듭니다.
+- 위의 예로부터 우리는 LifecycleObserver로써 MyLocationListener를 만들 수 있습니다. 그리고 LifecycleOwner의 onCreate()에서 그것을 초기화할 수 있습니다. 이것은 LifecycleObserver가 스스로 필요할 때 클린업 되도록 할 수 있게 만듭니다. 
+- 아래 코드를 봅시다.
+	```java
+	class MyLocationListener implements LifecycleObserver {
+	    private boolean enabled = false;
+	    public MyLocationListener(Context context, Lifecycle lifecycle, Callback callback) {
+	       ...
+	    }
+
+	    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+	    void start() {
+		if (enabled) {
+		   // connect
+		}
+	    }
+
+	    public void enable() {
+		enabled = true;
+		if (lifecycle.getState().isAtLeast(STARTED)) {
+		    // connect if not connected
+		}
+	    }
+
+	    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+	    void stop() {
+		// disconnect if connected
+	    }
+	}
+
+	class MyActivity extends LifecycleActivity {
+	    private MyLocationListener myLocationListener;
+
+	    public void onCreate(...) {
+		myLocationListener = new MyLocationListener(this, getLifecycle(), location -> {
+		    // update UI
+		});
+		Util.checkUserStatus(result -> {
+		    if (result) {
+			myLocationListener.enable();
+		    }
+		});
+	  }
+	}
+	```
+- 좋은 사용 예는 LifecycleOwner의 라이프사이클 상태가 좋지 않은 경우일 때 callback 호출을 피하는 것입니다. 예를 들어 액티비티가 상태를 저장한 후에 callback이 프래그먼트 트랜잭션을 시작하는 경우가 좋지 않은 경우입니다. Lifecycle 객체를 통해 현재 라이프사이클 상태를 체크할 수 있습니다. ```if (lifecycle.getState().isAtLeast(STARTED))```
+- 이제 MyLocationListener 클래스는 액티비티의 관리 없이 스스로 초기화할 수 있고, 필요할 때 클린업 할 수 있습니다. 따라서 MyLocationListener는 다른 액티비티나 클래스에서도 독립적으로 재활용할 수 있습니다.
+- 좋은 사용 예는 LifecycleOwner의 라이프사이클 상태가 좋지 않은 경우일 때 callback 호출을 피하는 것입니다. 예를 들어 액티비티가 상태를 저장한 후에 callback이 프래그먼트 트랜잭션을 시작하는 경우가 좋지 않은 경우입니다.
+- 또 다른LiveData과 ViewModel은 lifecycle-ware 컴포넌트의 좋은 사용 예입니다.
 
 ### Best practices
 
