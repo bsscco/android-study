@@ -139,16 +139,16 @@ UI Building(MVVM)
 		private Webservice webservice;
 		// ...
 		public LiveData<User> (int userId) {
-		// This is not an optimal implementation, we'll fix it below
-		final MutableLiveData<User> data = new MutableLiveData<>();
-		webservice.getUser(userId).enqueue(new Callback<User>() {
-			@Override
-			public void onResponse(Call<User> call, Response<User> response) {
-			// error case is left out for brevity
-			data.setValue(response.body());
-			}
-		});
-		return data;
+			// This is not an optimal implementation, we'll fix it below
+			final MutableLiveData<User> data = new MutableLiveData<>();
+			webservice.getUser(userId).enqueue(new Callback<User>() {
+				@Override
+				public void onResponse(Call<User> call, Response<User> response) {
+				// error case is left out for brevity
+				data.setValue(response.body());
+				}
+			});
+			return data;
 		}
 	}
 	```
