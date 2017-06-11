@@ -136,7 +136,7 @@
 
 - Transformation 종류
 	- ransformations.map()
-		- LiveData의 데이터 위에서 function을 적용합니다.
+		- LiveData의 데이터 위에서 function을 적용합니다. 그리고 새로운 LiveData를 생성해서 반환합니다.
 		```java
 		LiveData<User> userLiveData = ...;
 		LiveData<String> userName = Transformations.map(userLiveData, user -> {
@@ -144,7 +144,7 @@
 		});
 		```
 	- Transformations.switchMap()	
-		- 이건 잘 모르겠네....??? 
+		- 아... map이랑 뭔 차이지????
 		```java
 		private LiveData<User> getUser(String id) {
 		  ...;
@@ -156,9 +156,43 @@
 		
 - 사용 예
 	- 사용자의 주소입력에 따라 우편번호를 보여주는 UI가 있다고 가정합시다.
-		```ㅓㅁㅍㅁ
+		```java
+		class MyViewModel extends ViewModel {
+		    private final PostalCodeRepository repository;
+		    public MyViewModel(PostalCodeRepository repository) {
+		       this.repository = repository;
+		    }
+
+		    private LiveData<String> getPostalCode(String address) {
+		       // DON'T DO THIS
+		       return repository.getPostCode(address);
+		    }
+		}
+		```
+	- 이 UI에선 ```getPostalCode()```를 호출할 때마다 이전 LiveData를 제거하고, 새로운 LiveData를 다시 등록하는 작업이 필요할 겁니다. 
+	- 대신에 아래와 같이 해봅시다.
+		```java
+		class MyViewModel extends ViewModel {
+		    private final PostalCodeRepository repository;
+		    private final MutableLiveData<String> addressInput = new MutableLiveData();
+		    public final LiveData<String> postalCode =
+			    Transformations.switchMap(addressInput, (address) -> {
+				return repository.getPostCode(address);
+			     });
+
+		  public MyViewModel(PostalCodeRepository repository) {
+		      this.repository = repository
+		  }
+
+		  private void setInput(String address) {
+		      addressInput.setValue(address);
+		  }
+		}
+		```
+	- ```postalCode```가 ```public final```로 선언되었음에 집중해봅시다. 이것은 ```postalCode```가 결코 바뀌지 않을 거라는 뜻입니다. 이것은 ```addressInput```이 바뀔 때마다 ```addressInput```으로 동작하는 Transformation으로 정의됐습니다.
 
 <br>
 <br>
 
 ### 새로운 Transformations 생성하기
+- 다른 Trasformation이 필요할 땐 MediatorLiveData를 사용하면 됩니다. MediatorLiveData는 LiveData를 듣는 특별한 클래스입니다.
