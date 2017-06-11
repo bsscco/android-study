@@ -136,20 +136,20 @@ UI Building(MVVM)
 - (10) 데이터 fetching 기능을 가지는 **Model(Repository)** 준비하기
 	```java
 	public class UserRepository {
-		private Webservice webservice;
-		// ...
-		public LiveData<User> (int userId) {
-			// This is not an optimal implementation, we'll fix it below
-			final MutableLiveData<User> data = new MutableLiveData<>();
-			webservice.getUser(userId).enqueue(new Callback<User>() {
-				@Override
-				public void onResponse(Call<User> call, Response<User> response) {
-				// error case is left out for brevity
-				data.setValue(response.body());
-				}
-			});
-			return data;
-		}
+	    private Webservice webservice;
+	    // ...
+	    public LiveData<User> getUser(int userId) {
+		// This is not an optimal implementation, we'll fix it below
+		final MutableLiveData<User> data = new MutableLiveData<>();
+		webservice.getUser(userId).enqueue(new Callback<User>() {
+		    @Override
+		    public void onResponse(Call<User> call, Response<User> response) {
+			// error case is left out for brevity
+			data.setValue(response.body());
+		    }
+		});
+		return data;
+	    }
 	}
 	```
 	- **Repository**는 쓸모 없어 보일지 모르지만 중요한 목적이 있습니다. **Repository**는 앱으로부터 데이터 소스를 추상화 합니다. 이제 **ViewModel**은 데이터가 Webservice에 의해서 fetching 되는지 알지 못합니다. 이것은 우리가 필요할 때 다른 구현체로 교체할 수 있다는 것을 의미합니다.
