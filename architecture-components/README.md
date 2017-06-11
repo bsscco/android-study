@@ -2,6 +2,8 @@
 ### [원문](https://developer.android.com/topic/libraries/architecture/index.html)
 - 제멋대로 의역한 문서들입니다.
 
+<br>
+
 # 기타 링크
 ### 코드랩
 - [라이프사이클 컴포넌트로 라이프사이클 문제 반쯤 해결하기](https://codelabs.developers.google.com/codelabs/android-lifecycles/#0)
