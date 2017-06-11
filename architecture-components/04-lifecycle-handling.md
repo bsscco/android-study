@@ -159,7 +159,6 @@
 - 좋은 사용 예
 	- 좋은 사용 예는 LifecycleOwner의 라이프사이클 상태가 좋지 않은 경우일 때 callback 호출을 피하는 것입니다. 예를 들어 액티비티가 상태를 저장한 후에 callback이 프래그먼트 트랜잭션을 시작하는 경우가 좋지 않은 경우입니다. Lifecycle 객체를 통해 현재 라이프사이클 상태를 체크할 수 있습니다. ```if (lifecycle.getState().isAtLeast(STARTED))```
 	- 이제 MyLocationListener 클래스는 액티비티의 관리 없이 스스로 초기화할 수 있고, 필요할 때 클린업 할 수 있습니다. 따라서 MyLocationListener는 다른 액티비티나 클래스에서도 독립적으로 재활용할 수 있습니다.
-	- 좋은 사용 예는 LifecycleOwner의 라이프사이클 상태가 좋지 않은 경우일 때 callback 호출을 피하는 것입니다. 예를 들어 액티비티가 상태를 저장한 후에 callback이 프래그먼트 트랜잭션을 시작하는 경우가 좋지 않은 경우입니다.
 	- 또 다른 좋은 예는 LiveData과 ViewModel입니다. 이 클래스들은 lifecycle-ware 컴포넌트입니다.
 
 <br>
