@@ -131,13 +131,34 @@
 <br>
 
 ### Transformations
-- 하는 
-### Transformations일
-### Transformations
-- 당신은 아마도 LiveData의 값을 Observer로 디스패칭 하기 전에 변형시키고 싶을 수도 있습니다. lifecycle 패키지는 이러한 연산들을 헬퍼 메소드로 담고 있는 Transformations 클래스를 제공합니다.
+- 하는 일
+	- 당신은 아마도 LiveData의 값을 Observer로 디스패칭 하기 전에 변형시키고 싶을 수도 있습니다. lifecycle 패키지는 이러한 연산들을 헬퍼 메소드로 담고 있는 Transformations 클래스를 제공합니다.
 
+- Transformation 종류
+	- ransformations.map()
+		- LiveData의 데이터 위에서 function을 적용합니다.
+		```java
+		LiveData<User> userLiveData = ...;
+		LiveData<String> userName = Transformations.map(userLiveData, user -> {
+		    user.name + " " + user.lastName
+		});
+		```
+	- Transformations.switchMap()	
+		- 이건 잘 모르겠네....??? 
+		```java
+		private LiveData<User> getUser(String id) {
+		  ...;
+		}
+
+		LiveData<String> userId = ...;
+		LiveData<User> user = Transformations.switchMap(userId, id -> getUser(id) );
+		```
+		
+- 사용 예
+	- 사용자의 주소입력에 따라 우편번호를 보여주는 UI가 있다고 가정합시다.
+		```ㅓㅁㅍㅁ
 
 <br>
 <br>
 
-### 새로운 변형자 만들기
+### 새로운 Transformations 생성하기
