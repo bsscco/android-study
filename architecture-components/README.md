@@ -18,6 +18,8 @@
 	- TypeConverter를 사용해서 Entity의 POJO 멤버변수와 컬럼 사이의 전환을 커스텀하기
 	- 새로운 POJO 클래스로 쿼리 결과를 커스텀하기
 
-### 샘플 프로젝트
-- [샘플 프로젝트](https://github.com/googlesamples/android-architecture-components)
-
+### 샘플 프로젝트(https://github.com/googlesamples/android-architecture-components)
+- [베이스 샘플](https://github.com/googlesamples/android-architecture-components/tree/master/BasicSample)
+	- Data binding + ViewModel + LiveData + Room을 사용해서 라이프사이클 문제에 끄떡없게 MVVM으로 구현한 앱
+- [제품 수준의 샘플](https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample)
+	- Data binding + Dagger2 + Timber + Android Architecture Components + Glide + Retrofit + esspresso + mockito
