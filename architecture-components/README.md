@@ -16,6 +16,7 @@
 	- Room을 통해 데이터 캐시를 구현해서 앱 컴포넌트가 종료돼도 데이터를 보존하기
 	- ViewModel과 LiveData를 추가해서 비동기로 DB 데이터를 불러오기(without 라이프사이클 문제)
 	- TypeConverter를 사용해서 Entity의 POJO 멤버변수와 컬럼 사이의 전환을 커스텀하기
+	- 새로운 POJO 클래스로 쿼리 결과를 커스텀하기
 
 ### 샘플 프로젝트
 - [샘플 프로젝트](https://github.com/googlesamples/android-architecture-components)
