@@ -11,8 +11,9 @@
 	- 이전 예제에서 LiveData를 추가해서 비지니스 로직을 ViewModel쪽으로 완전히 이관하기
 	- 액티비티 라이프사이클에 따라 GPS리스너 등록/해제 하기
 	- 두 프래그먼트 간에 ViewModel 공유하기
+	
 - [Room으로 데이터에 영속성을 줘서 라이프사이클 문제 완전 해결하기](https://codelabs.developers.google.com/codelabs/android-persistence/#0)
-	- 
+	- d
 
 ### 샘플 프로젝트
 - [샘플 프로젝트](https://github.com/googlesamples/android-architecture-components)
