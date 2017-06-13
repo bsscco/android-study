@@ -26,3 +26,4 @@ ViewModel은 View와 Model을 알고 있습니다. View의 메소드들을 사�
 ### 참고
 - [위키 MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
 - [위키 Data binding](https://en.wikipedia.org/wiki/Data_binding)
+- [이규원님의 mvvm-architecture](https://justhackem.wordpress.com/2015/03/19/rmvvm-architecture/)
