@@ -35,6 +35,12 @@
 
 <br>
 
+### 팁
+Subscriber들을 한 곳에 담아 관리할 수 있는 CompositSubscription이 있습니다. CompositSubscription.clear()로 한꺼번에 구독을 해지할 수 있습니다. unsubscribe()는 액티비티가 강제종료됐다가 재실행될 때 잘못된 동작을 일으킬 수 있으니 사용하지 말라고 합니다.
+<br>
+
+그리고 에러 핸들러도 꼭 정의해야 합니다. 에러 발생 시 스택트레이스에 아무것도 나오지 않을 수 있으므로 에러 핸들러에서 로그를 남기는 일을 반드시 합시다.
+
 ### 참고
 - [Realm 뉴스 : 누구나 할 수 있는 RxJava, 지금 시작하기!](https://news.realm.io/kr/news/mobilization-hugo-visser-rxjava-for-rest-of-us/)
 - [[Realm 뉴스 : Rx와 Kotlin으로 간결하고 명료하게 모든 것을 조립해보세요!](https://news.realm.io/kr/news/compose-everything-rx-kotlin/)
