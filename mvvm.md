@@ -3,7 +3,7 @@
 # MVVM
 
 ### MVVM
-MVVM MVC의 파생이며, 따라서 엄밀히 말하면 MVC입니다. 
+MVVM MVC의 파생이며, 따라서 엄밀히 말하면 MVC입니다.
 
 <br>
 
