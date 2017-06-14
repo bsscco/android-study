@@ -1,3 +1,5 @@
+#architecture
+
 # LiveData
 
 ### LiveData
@@ -5,7 +7,7 @@
 	- LiveData는 LifecycleObserver를 더 추상화한 클래스라고 생각할 수 있습니다.
 	- LiveData는 데이터를 가지고 있는 클래스입니다. LiveData는 이 데이터를 관찰할 수 있도록 해줍니다. 그리고 일반적인 Observable과 달리 Lifecycle에 따른 적절한 처리가 들어있습니다.
 	- LiveData는 만약 Observer의 라이프사이클 상태가 STARTED 또는 RESUMED라면, Observer가 활성화된 상태에 있다고 간주합니다.
-	
+
 - LiveData 만들기
 	```java
 	public class LocationLiveData extends LiveData<Location> {
@@ -98,7 +100,7 @@
 						locationManager.removeUpdates(listener);
 				}
 		}
-		
+
 		public class MyFragment extends LifecycleFragment {
 				public void onActivityCreated (Bundle savedInstanceState) {
 						Util.checkUserStatus(result -> {
@@ -112,7 +114,7 @@
 		}
 		```
 	- 이렇게 함으로써 여러 액티비티, 프래그먼트는 MyLocationListener를 관찰하게 될 것입니다. 그리고 LiveData는 오직 옵저버가 활성화 상태일 때만 시스템 서비스에 접근합니다.
-	
+
 - LiveData의 이점
 	- 메모리 누수가 없어요.
 		- Observer들은 LifecycleOwner에 묶이기 때문에 라이프사이클이 파괴되면, Observer는 자동으로 클린업 됩니다.
@@ -143,7 +145,7 @@
 		    user.name + " " + user.lastName
 		});
 		```
-	- Transformations.switchMap()	
+	- Transformations.switchMap()
 		- 아... map이랑 뭔 차이지????
 		```java
 		private LiveData<User> getUser(String id) {
@@ -153,7 +155,7 @@
 		LiveData<String> userId = ...;
 		LiveData<User> user = Transformations.switchMap(userId, id -> getUser(id) );
 		```
-		
+
 - 사용 예
 	- 사용자의 주소입력에 따라 우편번호를 보여주는 UI가 있다고 가정합시다.
 		```java
@@ -169,7 +171,7 @@
 		    }
 		}
 		```
-	- 이 UI에선 ```getPostalCode()```를 호출할 때마다 이전 LiveData를 제거하고, 새로운 LiveData를 다시 등록하는 작업이 필요할 겁니다. 
+	- 이 UI에선 ```getPostalCode()```를 호출할 때마다 이전 LiveData를 제거하고, 새로운 LiveData를 다시 등록하는 작업이 필요할 겁니다.
 	- 대신에 아래와 같이 해봅시다.
 		```java
 		class MyViewModel extends ViewModel {

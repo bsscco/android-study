@@ -1,3 +1,5 @@
+#architecture
+
 # 라이프사이클 핸들링하기
 
 ### android.arch.lifecycle 패키지
@@ -78,7 +80,7 @@
 ### Lifecycle과 LifecycleObserver
 - 하는 일
 	- Lifecycle과 LifecycleObserver 클래스는 다른 객체들이 LifecycleOwner(액티비티, 프래그먼트 등)의 라이프사이클 상태를 관찰할 수 있도록 돕는 클래스입니다.
-	- 라이프사이클 상태를 관찰하기 위해 두 가지 enumaration을 사용합니다. 
+	- 라이프사이클 상태를 관찰하기 위해 두 가지 enumaration을 사용합니다.
 		- Event
 			- 라이프사이클 이벤트들은 프레임워크와 Lifecycle 클래스로부터 디스패치 됩니다. 이러한 이벤트들은 액티비티나 프래그먼트의 이벤트 콜백과 매치됩니다.
 		- State
@@ -98,7 +100,7 @@
 		    }
 		}
 		aLifecycleOwner.getLifecycle().addObserver(new MyObserver()); // 여기가 중요.
-		```	
+		```
 
 <br>
 <br>
@@ -108,11 +110,11 @@
 	- LifecycleOwner는 라이프사이클을 가지는 싱글 메소드 인터페이스입니다. getLifecycle()이라는 메소드만 가집니다.
 
 - 알아두기
-	- 아키텍쳐 컴포넌트들이 안정화될 때가지 Fragment와 AppCompatActivity 대신에 LifecycleFragment와 LifecycleActivity를 사용해주세요. 
+	- 아키텍쳐 컴포넌트들이 안정화될 때가지 Fragment와 AppCompatActivity 대신에 LifecycleFragment와 LifecycleActivity를 사용해주세요.
 	- 나중에 LifecycleFragment와 LifecycleActivity는 deprecated가 될 예정입니다.
 
 - LifecycleObserver 사용하기 
-	- 위의 예로부터 우리는 LifecycleObserver로써 MyLocationListener를 만들 수 있습니다. 그리고 LifecycleOwner의 onCreate()에서 그것을 초기화할 수 있습니다. 이것은 LifecycleObserver가 스스로 필요할 때 클린업 되도록 할 수 있게 만듭니다. 
+	- 위의 예로부터 우리는 LifecycleObserver로써 MyLocationListener를 만들 수 있습니다. 그리고 LifecycleOwner의 onCreate()에서 그것을 초기화할 수 있습니다. 이것은 LifecycleObserver가 스스로 필요할 때 클린업 되도록 할 수 있게 만듭니다.
 	- 아래 코드를 봅시다.
 		```java
 		class MyLocationListener implements LifecycleObserver {
